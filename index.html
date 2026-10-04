@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE VELVET ECHO 2026 LIVE CONCERT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0b10;
+      --card-bg: rgba(22, 25, 38, 0.75);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --accent-neon: #ff2a85;
+      --accent-cyan: #00f2fe;
+      --accent-purple: #7928ca;
+      --accent-kakao: #fee500;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --input-bg: rgba(13, 15, 24, 0.8);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(121, 40, 202, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 85% 70%, rgba(255, 42, 133, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(0, 242, 254, 0.1) 0%, transparent 60%);
+      background-attachment: fixed;
+      padding: 20px 16px 60px;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* 상단 미니 헤더 */
+    .top-header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-top: 10px;
+    }
+
+    .poster-badge {
+      display: inline-block;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, var(--accent-neon), var(--accent-purple));
+      color: #fff;
+      border-radius: 20px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 15px rgba(255, 42, 133, 0.4);
+    }
+
+    .band-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 30px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+      background: linear-gradient(to right, #ffffff, #c7d2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+    }
+
+    .concert-subtitle {
+      font-size: 13px;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* 메인 탭 내비게이션 */
+    .main-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      background: rgba(18, 21, 33, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 6px;
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
+      margin-bottom: 22px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      position: sticky;
+      top: 12px;
+      z-index: 50;
+    }
+
+    .main-tab-btn {
+      padding: 12px 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: transparent;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .main-tab-btn .tab-icon {
+      font-size: 16px;
+    }
+
+    .main-tab-btn:hover {
+      color: #fff;
+    }
+
+    .main-tab-btn.active {
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-neon));
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 42, 133, 0.4);
+    }
+
+    /* 탭 콘텐츠 공통 */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 카드 스타일 */
+    .content-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 26px 22px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #fff;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 12px;
+    }
+
+    /* 공연 소개 스타일 */
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .info-icon {
+      font-size: 22px;
+      width: 32px;
+      text-align: center;
+    }
+
+    .info-content {
+      font-size: 14px;
+    }
+
+    .info-label {
+      color: var(--text-muted);
+      font-size: 12px;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .info-value {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .intro-text {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #d1d5db;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 18px;
+      border-radius: 14px;
+      border-left: 3px solid var(--accent-neon);
+      margin-bottom: 20px;
+    }
+
+    .cta-box {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(121, 40, 202, 0.2), rgba(255, 42, 133, 0.15));
+      border: 1px solid rgba(255, 42, 133, 0.3);
+      padding: 20px;
+      border-radius: 16px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 14px;
+      background: linear-gradient(90deg, var(--accent-neon), var(--accent-purple));
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(255, 42, 133, 0.4);
+      transition: all 0.2s;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 42, 133, 0.6);
+    }
+
+    /* Setlist 스타일 */
+    .setlist-group {
+      margin-bottom: 22px;
+    }
+
+    .setlist-stage-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      background: rgba(0, 242, 254, 0.12);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      margin-bottom: 10px;
+    }
+
+    .track-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .track-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 14px;
+    }
+
+    .track-title {
+      font-weight: 600;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .track-no {
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .track-artist {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* 오시는길 스타일 */
+    .venue-info {
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .venue-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .venue-addr {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .transport-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .transport-card {
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .transport-title {
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .map-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .map-btn {
+      flex: 1;
+      padding: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 12px;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      transition: all 0.2s;
+    }
+
+    .map-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* 공연 신청/내역 */
+    .sub-tab-container {
+      display: flex;
+      gap: 8px;
+      background: rgba(14, 17, 27, 0.7);
+      padding: 5px;
+      border-radius: 14px;
+      border: 1px solid var(--card-border);
+      margin-bottom: 20px;
+    }
+
+    .sub-tab-btn {
+      flex: 1;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: transparent;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .sub-tab-btn.active {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #e5e7eb;
+    }
+
+    .form-label span.req {
+      color: var(--accent-neon);
+      margin-left: 2px;
+    }
+
+    .form-label span.sub {
+      color: var(--text-muted);
+      font-weight: 400;
+      font-size: 11px;
+      margin-left: 4px;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 12px 15px;
+      background: var(--input-bg);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(0, 242, 254, 0.2);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* 티켓 금액 표시 카드 */
+    .price-display-box {
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      padding: 12px 16px;
+      border-radius: 12px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .price-label-small {
+      font-size: 13px;
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+
+    .price-value-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 3px;
+    }
+
+    .price-amount {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      letter-spacing: -0.5px;
+    }
+
+    .price-won {
+      font-size: 14px;
+      font-weight: 700;
+      color: #e2e8f0;
+    }
+
+    /* 입금 계좌 안내 카드 */
+    .bank-notice-card {
+      background: linear-gradient(135deg, rgba(254, 229, 0, 0.08), rgba(255, 179, 0, 0.04));
+      border: 1px solid rgba(254, 229, 0, 0.35);
+      border-radius: 16px;
+      padding: 16px;
+      margin-top: 14px;
+      margin-bottom: 20px;
+    }
+
+    .bank-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .bank-title-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      background: var(--accent-kakao);
+      color: #111;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .copy-account-btn {
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 5px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .copy-account-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .bank-account-num {
+      font-family: 'Pretendard', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .bank-account-notice {
+      font-size: 12.5px;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    .bank-account-notice strong {
+      color: #fef08a;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(90deg, var(--accent-neon), var(--accent-purple));
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 20px rgba(255, 42, 133, 0.35);
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 25px rgba(255, 42, 133, 0.5);
+    }
+
+    .submit-btn:disabled {
+      background: #4b5563;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+
+    /* 신청 내역 조회 결과 스타일 */
+    .lookup-result {
+      display: none;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.15);
+    }
+
+    /* 입금 상태 안내 카드 */
+    .deposit-status-card {
+      padding: 14px 16px;
+      border-radius: 14px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .deposit-status-card.pending {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    .deposit-status-card.confirmed {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .deposit-status-card.refunded {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+
+    .deposit-status-title {
+      font-size: 14px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .deposit-status-card.pending .deposit-status-title {
+      color: #fbbf24;
+    }
+
+    .deposit-status-card.confirmed .deposit-status-title {
+      color: #34d399;
+    }
+
+    .deposit-status-card.refunded .deposit-status-title {
+      color: #f87171;
+    }
+
+    .deposit-status-desc {
+      font-size: 12.5px;
+      color: #d1d5db;
+      line-height: 1.5;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(0, 242, 254, 0.15);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      margin-bottom: 12px;
+    }
+
+    .status-badge.edited {
+      background: rgba(255, 179, 0, 0.15);
+      color: #ffb300;
+      border-color: rgba(255, 179, 0, 0.3);
+    }
+
+    .alert-box {
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-top: 16px;
+      display: none;
+    }
+
+    .alert-success {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .alert-error {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+
+    /* 팝업 모달 스타일 */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .modal-card {
+      background: #141724;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      padding: 28px 22px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+      text-align: center;
+    }
+
+    .modal-icon {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .modal-summary {
+      font-size: 14px;
+      color: #cbd5e1;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+
+    .modal-bank-box {
+      background: rgba(254, 229, 0, 0.08);
+      border: 1px solid rgba(254, 229, 0, 0.4);
+      border-radius: 16px;
+      padding: 16px;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .modal-bank-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--accent-kakao);
+      color: #111;
+      padding: 3px 8px;
+      border-radius: 12px;
+      margin-bottom: 6px;
+    }
+
+    .modal-bank-acc {
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .modal-bank-price {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 8px;
+    }
+
+    .modal-bank-desc {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.5;
+      border-top: 1px dashed rgba(255, 255, 255, 0.12);
+      padding-top: 8px;
+    }
+
+    .modal-close-btn {
+      width: 100%;
+      padding: 13px;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(90deg, var(--accent-neon), var(--accent-purple));
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 42, 133, 0.4);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- 상단 밴드 타이틀 헤더 -->
+    <header class="top-header">
+      <span class="poster-badge">LIVE IN SEOUL</span>
+      <h1 class="band-title">THE VELVET ECHO</h1>
+      <div class="concert-subtitle">2026 LIVE CONCERT · ECHOES IN THE NIGHT</div>
+    </header>
+
+    <!-- 메인 탭 내비게이션 (기본값: 공연 소개) -->
+    <nav class="main-nav" role="tablist">
+      <button class="main-tab-btn active" id="btn-about" onclick="switchMainTab('about')">
+        <span class="tab-icon">✨</span>
+        <span>공연 소개</span>
+      </button>
+      <button class="main-tab-btn" id="btn-setlist" onclick="switchMainTab('setlist')">
+        <span class="tab-icon">🎵</span>
+        <span>Setlist</span>
+      </button>
+      <button class="main-tab-btn" id="btn-location" onclick="switchMainTab('location')">
+        <span class="tab-icon">📍</span>
+        <span>오시는길</span>
+      </button>
+      <button class="main-tab-btn" id="btn-apply" onclick="switchMainTab('apply')">
+        <span class="tab-icon">🎟️</span>
+        <span>신청/내역</span>
+      </button>
+    </nav>
+
+    <!-- [탭 1] 공연 소개 (기본 활성) -->
+    <section id="tab-about" class="tab-content active">
+      <div class="content-card">
+        <h2 class="card-title">🎸 공연 안내</h2>
+        
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-icon">📅</span>
+            <div class="info-content">
+              <span class="info-label">일시</span>
+              <span class="info-value">2026년 11월 14일 (토) 18:00</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📍</span>
+            <div class="info-content">
+              <span class="info-label">장소</span>
+              <span class="info-value">강남 록커스 가든 (지하 1층)</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">🎟️</span>
+            <div class="info-content">
+              <span class="info-label">티켓 금액</span>
+              <span class="info-value">5,000원 / 1인 (사전 입금제)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="intro-text">
+          가을 밤, 우리의 뜨거운 사운드로 여러분을 초대합니다.<br>
+          무대와 객석이 하나 되어 호흡하는 에너지 넘치는 라이브 무대를 준비했습니다.<br><br>
+          ※ 좌석 수가 한정되어 있어 <strong>사전 관람 신청 및 입금 확인</strong> 순으로 최종 확정되오니, 아래 버튼을 통해 신청을 완료해 주시기 바랍니다.
+        </div>
+
+        <div class="cta-box">
+          <button class="cta-btn" onclick="switchMainTab('apply', 'new')">
+            🎟️ 공연 관람 신청하기 (5,000원)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- [탭 2] Setlist -->
+    <section id="tab-setlist" class="tab-content">
+      <div class="content-card">
+        <h2 class="card-title">📜 셋리스트 (Setlist)</h2>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 18px;">
+          ※ 곡 순서 및 세부 라인업은 현장 연출 상황에 따라 일부 조정될 수 있습니다.
+        </p>
+
+        <!-- Stage 1 -->
+        <div class="setlist-group">
+          <span class="setlist-stage-badge">PART 1 · 청춘의 질주</span>
+          <div class="track-list">
+            <div class="track-item">
+              <div class="track-title">
+                <span class="track-no">01</span>
+                <span>난춘 (亂春)</span>
+              </div>
+              <span class="track-artist">새소년</span>
+            </div>
+            <div class="track-item">
+              <div class="track-title">
+                <span class="track-no">02</span>
+                <span>청색동경</span>
+              </div>
+              <span class="track-artist">팔칠댄스 (87dance)</span>
+            </div>
+            <div class="track-item">
+              <div class="track-title">
+                <span class="track-no">03</span>
+                <span>우주의 여름</span>
+              </div>
+              <span class="track-artist">Lacuna (라쿠나)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="setlist-group">
+          <span class="setlist-stage-badge">PART 2 · 깊어지는 밤</span>
+          <div class="track-list">
+            <div class="track-item">
+              <div class="track-title">
+                <span class="track-no">04</span>
+                <span>정면돌파</span>
+              </div>
+              <span class="track-artist">신인류</span>
+            </div>
+            <div class="track-item">
+              <div class="track-title">
+                <span class="track-no">05</span>
+                <span>아지랑이</span>
+              </div>
+              <span class="track-artist">쏜애플 (Thornapple)</span>
+            </div>
+            <div class="track-item">
+              <div class="track-title">
+                <span class="track-no">06</span>
+                <span>괴수의 꽃노래 (怪獣の花唄)</span>
+              </div>
+              <span class="track-artist">Vaundy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 3 & Finale -->
+        <div class="setlist-group" style="margin-bottom: 0;">
+          <span class="setlist-stage-badge">PART 3 · 파이널 & 앵콜</span>
+          <div class="track-list">
+            <div class="track-item">
+              <div class="track-title">
+                <span class="track-no">07</span>
+                <span>붉은 노을</span>
+              </div>
+              <span class="track-artist">YB ver.</span>
+            </div>
+            <div class="track-item">
+              <div class="track-title">
+                <span class="track-no">08</span>
+                <span>그대에게</span>
+              </div>
+              <span class="track-artist">신해철 / 넥스트</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- [탭 3] 공연장 오시는길 -->
+    <section id="tab-location" class="tab-content">
+      <div class="content-card">
+        <h2 class="card-title">📍 공연장 안내</h2>
+
+        <div class="venue-info">
+          <div class="venue-name">강남 록커스 가든 (Rocker's Garden)</div>
+          <div class="venue-addr">서울특별시 강남구 도곡로4길 5 지하1층 (뱅뱅사거리 인근)</div>
+        </div>
+
+        <div class="transport-section">
+          <div class="transport-card">
+            <div class="transport-title">🚇 지하철 이용 시</div>
+            <div>
+              • <strong>3호선 / 신분당선</strong> 양재역 3번 출구 도보 약 8~10분<br>
+              • <strong>2호선 / 신분당선</strong> 강남역 4번 출구 도보 약 10~12분
+            </div>
+          </div>
+
+          <div class="transport-card">
+            <div class="transport-title">🚌 버스 이용 시</div>
+            <div>
+              • <strong>뱅뱅사거리</strong> 또는 <strong>뱅뱅사거리·구로바니마켓</strong> 정류장 하차 후 도보 약 3~5분
+            </div>
+          </div>
+
+          <div class="transport-card">
+            <div class="transport-title">🚗 주차 안내</div>
+            <div>
+              • 공연장 전용 주차 공간이 지원되지 않습니다.<br>
+              • 가급적 대중교통 이용을 권장해 드리며, 자차 이용 시 인근 유료 및 공영주차장을 이용해 주시기 바랍니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="map-buttons">
+          <a href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EA%B5%AC%20%EB%8F%84%EA%B3%A1%EB%A1%9C4%EA%B8%B8%205" target="_blank" rel="noopener" class="map-btn">
+            <span>🗺️ 네이버 지도</span>
+          </a>
+          <a href="https://map.kakao.com/link/search/%EA%B0%95%EB%82%A8%EA%B5%AC%20%EB%8F%84%EA%B3%A1%EB%A1%9C4%EA%B8%B8%205" target="_blank" rel="noopener" class="map-btn">
+            <span>🟡 카카오맵</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- [탭 4] 공연 신청 / 내역 -->
+    <section id="tab-apply" class="tab-content">
+      <div class="content-card">
+        <!-- 신청 / 조회 서브탭 -->
+        <div class="sub-tab-container">
+          <button class="sub-tab-btn active" id="subBtnNew" onclick="switchSubTab('new')">
+            ✏️ 신규 신청하기
+          </button>
+          <button class="sub-tab-btn" id="subBtnLookup" onclick="switchSubTab('lookup')">
+            🔍 신청내역 조회
+          </button>
+        </div>
+
+        <!-- 1. 신규 신청 폼 -->
+        <div id="subSectionNew" class="sub-section">
+          <form id="newApplyForm" onsubmit="handleNewSubmit(event)">
+            <div class="form-group">
+              <label class="form-label">신청자 성함 <span class="req">*</span></label>
+              <input type="text" id="newName" class="form-input" placeholder="성함을 입력해주세요" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">연락처 <span class="req">*</span> <span class="sub">(010-0000-0000)</span></label>
+              <input type="tel" id="newPhone" class="form-input" value="010-" placeholder="010-1234-5678" maxlength="13" pattern="010-[0-9]{4}-[0-9]{4}" title="010-0000-0000 형식의 11자리 휴대폰 번호를 입력해주세요." required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">조회용 비밀번호 <span class="req">*</span> <span class="sub">(숫자 4자리)</span></label>
+              <input type="password" id="newPin" class="form-input" placeholder="예: 1234" maxlength="4" pattern="[0-9]{4}" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">신청 인원 <span class="req">*</span></label>
+              <select id="newTickets" class="form-select" onchange="updateNewTicketPrice()" required>
+                <option value="1" selected>1인 (본인)</option>
+                <option value="2">2인 (동반 1인)</option>
+                <option value="3">3인 (동반 2인)</option>
+                <option value="4">4인 (동반 3인)</option>
+                <option value="5">5인 (동반 4인)</option>
+                <option value="6">6인 (동반 5인)</option>
+                <option value="7">7인 (동반 6인)</option>
+                <option value="8">8인 (동반 7인)</option>
+                <option value="9">9인 (동반 8인)</option>
+                <option value="10">10인 (동반 9인)</option>
+              </select>
+            </div>
+
+            <!-- 티켓 금액 자동 계산 칸 -->
+            <div class="form-group">
+              <label class="form-label">티켓 금액 <span class="sub">(5,000원 / 1인)</span></label>
+              <div class="price-display-box">
+                <span class="price-label-small">총 입금 금액</span>
+                <div class="price-value-wrap">
+                  <span class="price-amount" id="newTotalPrice">5,000</span>
+                  <span class="price-won">원</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 입금 계좌 안내 카드 -->
+            <div class="bank-notice-card">
+              <div class="bank-header">
+                <span class="bank-title-badge">🟡 카카오뱅크</span>
+                <button type="button" class="copy-account-btn" onclick="copyAccount('3333-02-7961729')">계좌번호 복사</button>
+              </div>
+              <div class="bank-account-num">3333-02-7961729 <span style="font-size: 14px; font-weight: 600; color: #cbd5e1;">(예금주: 신민철)</span></div>
+              <div class="bank-account-notice">
+                카카오뱅크 <strong>3333-02-7961729 (예금주: 신민철)</strong> 로 해당 금액을 입금하셔야 신청이 최종 완료됩니다.<br>
+                입금 확인 시 <strong>문자로 입금 확인 내역을 전송</strong>해 드릴 예정이며, <strong>신청내역 조회</strong> 탭에서도 입금 확인 여부가 실시간 업데이트됩니다.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">응원 한마디 / 요청사항</label>
+              <textarea id="newNotes" class="form-textarea" placeholder="멤버들에게 전할 응원 메시지나 요청사항을 자유롭게 적어주세요."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="newSubmitBtn">
+              공연 신청 완료하기
+            </button>
+          </form>
+
+          <div id="newAlert" class="alert-box"></div>
+        </div>
+
+        <!-- 2. 내역 조회 및 수정 폼 -->
+        <div id="subSectionLookup" class="sub-section" style="display: none;">
+          <form id="lookupForm" onsubmit="handleLookup(event)">
+            <div class="form-group">
+              <label class="form-label">신청자 성함 <span class="req">*</span></label>
+              <input type="text" id="lookupName" class="form-input" placeholder="신청 시 입력한 성함" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">휴대폰 번호 끝 4자리 <span class="req">*</span></label>
+              <input type="text" id="lookupPhoneLast4" class="form-input" placeholder="예: 5678" maxlength="4" pattern="[0-9]{4}" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">비밀번호 <span class="req">*</span> <span class="sub">(숫자 4자리)</span></label>
+              <input type="password" id="lookupPin" class="form-input" placeholder="설정하신 4자리" maxlength="4" pattern="[0-9]{4}" required>
+            </div>
+
+            <button type="submit" class="submit-btn" id="lookupSubmitBtn">
+              신청내역 조회하기
+            </button>
+          </form>
+
+          <div id="lookupAlert" class="alert-box"></div>
+
+          <!-- 조회 결과 및 수정 영역 -->
+          <div id="lookupResult" class="lookup-result">
+            
+            <!-- 입금 확인 상태 카드 -->
+            <div id="lookupDepositCard" class="deposit-status-card pending">
+              <div class="deposit-status-title">
+                <span id="lookupDepositIcon">⏳</span>
+                <span id="lookupDepositTitle">입금 확인 여부: 입금 대기</span>
+              </div>
+              <div class="deposit-status-desc" id="lookupDepositDesc">
+                카카오뱅크 <strong>3333-02-7961729 (예금주: 신민철)</strong> 로 <span id="lookupNeedAmount">5,000원</span> 입금이 확인되면 문자로 최종 안내를 드립니다.
+              </div>
+            </div>
+
+            <div id="statusBadge" class="status-badge">신청 상태: 신청 완료</div>
+            
+            <form id="editForm" onsubmit="handleEditSubmit(event)">
+              <div class="form-group">
+                <label class="form-label">신청자 성함</label>
+                <input type="text" id="editName" class="form-input" readonly style="opacity: 0.7; cursor: not-allowed;">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">연락처</label>
+                <input type="text" id="editPhone" class="form-input" readonly style="opacity: 0.7; cursor: not-allowed;">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">신청 인원</label>
+                <select id="editTickets" class="form-select" disabled style="opacity: 0.75; cursor: not-allowed;">
+                  <option value="1">1인 (본인)</option>
+                  <option value="2">2인 (동반 1인)</option>
+                  <option value="3">3인 (동반 2인)</option>
+                  <option value="4">4인 (동반 3인)</option>
+                  <option value="5">5인 (동반 4인)</option>
+                  <option value="6">6인 (동반 5인)</option>
+                  <option value="7">7인 (동반 6인)</option>
+                  <option value="8">8인 (동반 7인)</option>
+                  <option value="9">9인 (동반 8인)</option>
+                  <option value="10">10인 (동반 9인)</option>
+                </select>
+              </div>
+
+              <!-- 수정 폼 티켓 금액 표시 -->
+              <div class="form-group">
+                <label class="form-label">티켓 금액 <span class="sub">(5,000원 / 1인)</span></label>
+                <div class="price-display-box">
+                  <span class="price-label-small">총 입금 금액</span>
+                  <div class="price-value-wrap">
+                    <span class="price-amount" id="editTotalPrice">5,000</span>
+                    <span class="price-won">원</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 조회 내역 속 입금 계좌 안내 -->
+              <div class="bank-notice-card" style="margin-top: 10px;">
+                <div class="bank-header">
+                  <span class="bank-title-badge">🟡 입금 계좌</span>
+                  <button type="button" class="copy-account-btn" onclick="copyAccount('3333-02-7961729')">계좌번호 복사</button>
+                </div>
+                <div class="bank-account-num">카카오뱅크 3333-02-7961729 <span style="font-size: 14px; font-weight: 600; color: #cbd5e1;">(예금주: 신민철)</span></div>
+                <div class="bank-account-notice">
+                  입금자명을 신청자 성함과 동일하게 입금해 주시기 바랍니다.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">응원 한마디 / 요청사항</label>
+                <textarea id="editNotes" class="form-textarea" readonly style="opacity: 0.75; cursor: not-allowed;"></textarea>
+              </div>
+
+              <!-- 수정 저장 버튼 (기능 유지 및 UI 비노출 처리) -->
+              <button type="submit" class="submit-btn" id="editSubmitBtn" style="display: none;">
+                수정 내용 저장하기
+              </button>
+            </form>
+            <div id="editAlert" class="alert-box"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer>
+      © 2026 THE VELVET ECHO. All rights reserved.
+    </footer>
+
+  </div>
+
+  <!-- [팝업 모달] 신청 완료 및 계좌 안내 -->
+  <div id="successModal" class="modal-overlay" onclick="closeModalOnBg(event)">
+    <div class="modal-card">
+      <div class="modal-icon">🎉</div>
+      <h3 class="modal-title">공연 신청이 접수되었습니다!</h3>
+      <p class="modal-summary">
+        <strong id="modalApplicantName" style="color: #fff;">신청자</strong> 님 (<span id="modalTicketCount">1</span>매)<br>
+        아래 계좌로 입금해 주셔야 최종 예약이 확정됩니다.
+      </p>
+
+      <div class="modal-bank-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 6px;">
+          <span class="modal-bank-badge">🟡 카카오뱅크</span>
+          <button type="button" class="copy-account-btn" onclick="copyAccount('3333-02-7961729')">계좌 복사</button>
+        </div>
+        <div class="modal-bank-acc">3333-02-7961729 <span style="font-size: 14px; font-weight: 600; color: #cbd5e1;">(예금주: 신민철)</span></div>
+        <div class="modal-bank-price">입금하실 금액: <span id="modalTotalAmount">5,000</span>원</div>
+        <div class="modal-bank-desc">
+          • 입금 확인 시 <strong>문자로 입금 확인 내역을 전송</strong>해 드립니다.<br>
+          • <strong>신청내역 조회</strong> 탭에서도 입금 확인 여부가 실시간 업데이트됩니다.
+        </div>
+      </div>
+
+      <button type="button" class="modal-close-btn" onclick="closeModal()">
+        확인 완료
+      </button>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * 구글 스프레드시트 Web App URL
+     */
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbxO7jSzhw0Nsgrmw1dzwKtG1w6xA3Y1Yv3F-p1oRP6JJjITmGdwDd5K-MSGWP09c5qe/exec";
+    const TICKET_PRICE = 5000;
+
+    // 가상 모드용 로컬 임시 DB
+    let mockDB = [
+      {
+        name: "홍길동",
+        phone: "010-1234-5678",
+        phoneLast4: "5678",
+        pin: "1234",
+        tickets: "2",
+        notes: "기대하고 있습니다!",
+        status: "신규",
+        depositStatus: "입금 대기"
+      }
+    ];
+
+    // 티켓 금액 자동 계산 함수 (신규 신청)
+    function updateNewTicketPrice() {
+      const count = parseInt(document.getElementById('newTickets').value) || 1;
+      const total = count * TICKET_PRICE;
+      document.getElementById('newTotalPrice').textContent = total.toLocaleString();
+    }
+
+    // 티켓 금액 자동 계산 함수 (수정 폼)
+    function updateEditTicketPrice() {
+      const count = parseInt(document.getElementById('editTickets').value) || 1;
+      const total = count * TICKET_PRICE;
+      document.getElementById('editTotalPrice').textContent = total.toLocaleString();
+      const needAmountEl = document.getElementById('lookupNeedAmount');
+      if (needAmountEl) {
+        needAmountEl.textContent = `${total.toLocaleString()}원`;
+      }
+    }
+
+    // 계좌번호 클립보드 복사 함수
+    function copyAccount(accNum) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(accNum).then(() => {
+          alert(`계좌번호가 복사되었습니다:\n${accNum}`);
+        }).catch(() => {
+          prompt('계좌번호를 복사하세요:', accNum);
+        });
+      } else {
+        prompt('계좌번호를 복사하세요:', accNum);
+      }
+    }
+
+    // 팝업 모달 제어
+    function openSuccessModal(name, count) {
+      const total = (count * TICKET_PRICE).toLocaleString();
+      document.getElementById('modalApplicantName').textContent = name;
+      document.getElementById('modalTicketCount').textContent = count;
+      document.getElementById('modalTotalAmount').textContent = total;
+      document.getElementById('successModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('successModal').style.display = 'none';
+    }
+
+    function closeModalOnBg(e) {
+      if (e.target.id === 'successModal') {
+        closeModal();
+      }
+    }
+
+    // 1. 메인 탭 전환 함수 (about, setlist, location, apply)
+    function switchMainTab(tabName, subTab = 'new') {
+      const tabs = ['about', 'setlist', 'location', 'apply'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`btn-${t}`);
+        const content = document.getElementById(`tab-${t}`);
+        if (btn) btn.classList.toggle('active', t === tabName);
+        if (content) content.classList.toggle('active', t === tabName);
+      });
+
+      if (tabName === 'apply' && subTab) {
+        switchSubTab(subTab);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 2. 신청/내역 서브탭 전환 (new, lookup)
+    function switchSubTab(subTabName) {
+      const btnNew = document.getElementById('subBtnNew');
+      const btnLookup = document.getElementById('subBtnLookup');
+      const secNew = document.getElementById('subSectionNew');
+      const secLookup = document.getElementById('subSectionLookup');
+
+      if (btnNew) btnNew.classList.toggle('active', subTabName === 'new');
+      if (btnLookup) btnLookup.classList.toggle('active', subTabName === 'lookup');
+      if (secNew) secNew.style.display = (subTabName === 'new') ? 'block' : 'none';
+      if (secLookup) secLookup.style.display = (subTabName === 'lookup') ? 'block' : 'none';
+
+      hideAlerts();
+    }
+
+    function showAlert(elementId, message, isSuccess) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      el.textContent = message;
+      el.className = `alert-box ${isSuccess ? 'alert-success' : 'alert-error'}`;
+      el.style.display = 'block';
+    }
+
+    function hideAlerts() {
+      ['newAlert', 'lookupAlert', 'editAlert'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+    }
+
+    // 3. 신규 신청 처리
+    async function handleNewSubmit(e) {
+      e.preventDefault();
+      hideAlerts();
+      const btn = document.getElementById("newSubmitBtn");
+      btn.disabled = true;
+      btn.textContent = "신청 처리 중...";
+
+      const name = document.getElementById("newName").value.trim();
+      const phone = document.getElementById("newPhone").value.trim();
+      const pin = document.getElementById("newPin").value.trim();
+      const tickets = document.getElementById("newTickets").value;
+      const notes = document.getElementById("newNotes").value.trim();
+
+      const phoneClean = phone.replace(/[^0-9]/g, '');
+      if (phoneClean.length !== 11) {
+        showAlert("newAlert", "연락처를 11자리 휴대폰 번호로 정확히 입력해주세요. (예: 010-1234-5678)", false);
+        btn.disabled = false;
+        btn.textContent = "공연 신청 완료하기";
+        document.getElementById("newPhone").focus();
+        return;
+      }
+      const phoneLast4 = phoneClean.slice(-4);
+
+      const payload = {
+        action: "create",
+        name,
+        phone,
+        phoneLast4,
+        pin,
+        tickets,
+        notes
+      };
+
+      try {
+        if (!GAS_URL.trim()) {
+          await new Promise(r => setTimeout(r, 500));
+          mockDB.push({ ...payload, status: "신규", depositStatus: "입금 대기" });
+          document.getElementById("newApplyForm").reset();
+          document.getElementById("newPhone").value = "010-";
+          updateNewTicketPrice();
+          openSuccessModal(name, parseInt(tickets));
+        } else {
+          const response = await fetch(GAS_URL, {
+            method: "POST",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
+          });
+          const res = await response.json();
+          if (res.success) {
+            document.getElementById("newApplyForm").reset();
+            document.getElementById("newPhone").value = "010-";
+            updateNewTicketPrice();
+            // 계좌 안내 모달 팝업 띄우기
+            openSuccessModal(name, parseInt(tickets));
+          } else {
+            showAlert("newAlert", res.message || "신청에 실패했습니다.", false);
+          }
+        }
+      } catch (err) {
+        showAlert("newAlert", "통신 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.", false);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "공연 신청 완료하기";
+      }
+    }
+
+    // 4. 신청 내역 조회 처리
+    async function handleLookup(e) {
+      e.preventDefault();
+      hideAlerts();
+      const btn = document.getElementById("lookupSubmitBtn");
+      btn.disabled = true;
+      btn.textContent = "조회 중...";
+
+      const name = document.getElementById("lookupName").value.trim();
+      const phoneLast4 = document.getElementById("lookupPhoneLast4").value.trim();
+      const pin = document.getElementById("lookupPin").value.trim();
+
+      try {
+        if (!GAS_URL.trim()) {
+          await new Promise(r => setTimeout(r, 500));
+          const found = mockDB.find(item => item.name === name && item.phoneLast4 === phoneLast4 && item.pin === pin);
+          if (found) {
+            showEditSection(found);
+            showAlert("lookupAlert", "신청 내역을 성공적으로 불러왔습니다.", true);
+          } else {
+            showAlert("lookupAlert", "일치하는 신청 내역을 찾을 수 없습니다. 정보를 확인해 주세요.", false);
+            document.getElementById("lookupResult").style.display = "none";
+          }
+        } else {
+          const params = new URLSearchParams({ action: "lookup", name, phoneLast4, pin });
+          const response = await fetch(`${GAS_URL}?${params.toString()}`);
+          const res = await response.json();
+
+          if (res.success && res.data) {
+            showEditSection(res.data);
+            showAlert("lookupAlert", "신청 내역을 성공적으로 불러왔습니다.", true);
+          } else {
+            showAlert("lookupAlert", res.message || "일치하는 신청 내역이 없습니다.", false);
+            document.getElementById("lookupResult").style.display = "none";
+          }
+        }
+      } catch (err) {
+        showAlert("lookupAlert", "조회 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.", false);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "신청내역 조회하기";
+      }
+    }
+
+    function showEditSection(data) {
+      document.getElementById("editName").value = data.name;
+      document.getElementById("editPhone").value = data.phone;
+      document.getElementById("editTickets").value = data.tickets;
+      document.getElementById("editNotes").value = data.notes || "";
+      
+      updateEditTicketPrice();
+
+      // 입금 확인 여부 상태 파악 (구글 시트 J열 또는 반환 필드)
+      // 기존 신청 정보 저장 (수정 히스토리 비교용)
+      document.getElementById("editTickets").setAttribute("data-prev-tickets", data.tickets);
+      document.getElementById("editNotes").setAttribute("data-prev-notes", data.notes || "");
+
+      // 입금 확인 여부 상태 파악 (입금 대기 / 입금 완료 / 환불 완료)
+      const rawDeposit = (data.depositStatus || data.deposit || data.isPaid || data['입금 확인 여부'] || data['입금여부'] || "").trim();
+
+      const depositCard = document.getElementById("lookupDepositCard");
+      const depositIcon = document.getElementById("lookupDepositIcon");
+      const depositTitle = document.getElementById("lookupDepositTitle");
+      const depositDesc = document.getElementById("lookupDepositDesc");
+      const count = parseInt(data.tickets) || 1;
+      const amountStr = (count * TICKET_PRICE).toLocaleString() + "원";
+
+      if (rawDeposit.includes("환불")) {
+        depositCard.className = "deposit-status-card refunded";
+        depositIcon.textContent = "↩️";
+        depositTitle.textContent = "입금 확인 여부: 환불 완료 (신청 취소)";
+        depositDesc.innerHTML = `해당 신청 건은 환불 및 취소 처리가 완료되었습니다. 재신청 또는 상세 문의는 담당자에게 문의해 주세요.`;
+      } else if (rawDeposit.includes("완료") || rawDeposit.includes("확인") || rawDeposit === "O") {
+        depositCard.className = "deposit-status-card confirmed";
+        depositIcon.textContent = "✅";
+        depositTitle.textContent = "입금 확인 여부: 입금 완료";
+        depositDesc.innerHTML = `<strong>${amountStr}</strong> 입금이 확인되었습니다. 공연 당일 현장에서 뵙겠습니다!`;
+      } else {
+        // 기본값: 입금 대기
+        depositCard.className = "deposit-status-card pending";
+        depositIcon.textContent = "⏳";
+        depositTitle.textContent = "입금 확인 여부: 입금 대기";
+        depositDesc.innerHTML = `카카오뱅크 <strong>3333-02-7961729 (예금주: 신민철)</strong> 로 <strong>${amountStr}</strong> 입금이 완료되어야 최종 확정됩니다. 입금 확인 시 문자로 안내드립니다.`;
+      }
+
+      const badge = document.getElementById("statusBadge");
+      const isEdited = (data.status && data.status.includes("수정"));
+      badge.textContent = `신청 상태: ${data.status || '신청 완료'}`;
+      badge.className = `status-badge ${isEdited ? 'edited' : ''}`;
+
+      document.getElementById("lookupResult").style.display = "block";
+    }
+
+    // 5. 신청 내역 수정 반영
+    async function handleEditSubmit(e) {
+      e.preventDefault();
+      hideAlerts();
+      const btn = document.getElementById("editSubmitBtn");
+      btn.disabled = true;
+      btn.textContent = "수정 반영 중...";
+
+      const name = document.getElementById("lookupName").value.trim();
+      const phoneLast4 = document.getElementById("lookupPhoneLast4").value.trim();
+      const pin = document.getElementById("lookupPin").value.trim();
+      const tickets = document.getElementById("editTickets").value;
+      const notes = document.getElementById("editNotes").value.trim();
+
+      const prevTickets = document.getElementById("editTickets").getAttribute("data-prev-tickets") || "";
+      const prevNotes = document.getElementById("editNotes").getAttribute("data-prev-notes") || "";
+
+      const payload = {
+        action: "update",
+        name,
+        phoneLast4,
+        pin,
+        tickets,
+        notes,
+        prevTickets,
+        prevNotes
+      };
+
+      try {
+        if (!GAS_URL.trim()) {
+          await new Promise(r => setTimeout(r, 500));
+          const idx = mockDB.findIndex(item => item.name === name && item.phoneLast4 === phoneLast4 && item.pin === pin);
+          if (idx !== -1) {
+            mockDB[idx].tickets = tickets;
+            mockDB[idx].notes = notes;
+            mockDB[idx].status = "(수정) 완료";
+
+            const badge = document.getElementById("statusBadge");
+            badge.textContent = `신청 상태: ${mockDB[idx].status}`;
+            badge.className = "status-badge edited";
+
+            showAlert("editAlert", "✅ [테스트 모드] 신청 내역이 수정되었습니다.", true);
+          }
+        } else {
+          const response = await fetch(GAS_URL, {
+            method: "POST",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
+          });
+          const res = await response.json();
+          if (res.success) {
+            showAlert("editAlert", `✅ ${res.message || '신청 내역이 성공적으로 수정되었습니다.'}`, true);
+            const badge = document.getElementById("statusBadge");
+            badge.textContent = `신청 상태: (수정) 완료`;
+            badge.className = "status-badge edited";
+          } else {
+            showAlert("editAlert", res.message || "수정에 실패했습니다.", false);
+          }
+        }
+      } catch (err) {
+        showAlert("editAlert", "수정 중 오류가 발생했습니다. 다시 시도해 주세요.", false);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "수정 내용 저장하기";
+      }
+    }
+
+    // 6. 연락처 입력 시 '010-' 기본 세팅 및 4자리 입력 시 자동 하이픈(-) 처리
+    const newPhoneInput = document.getElementById("newPhone");
+    if (newPhoneInput) {
+      let isDeletingPhone = false;
+
+      newPhoneInput.addEventListener("keydown", function(e) {
+        if (e.key === "Backspace" || e.key === "Delete") {
+          isDeletingPhone = true;
+        } else {
+          isDeletingPhone = false;
+        }
+      });
+
+      newPhoneInput.addEventListener("input", function(e) {
+        const isDeleting = isDeletingPhone || (e.inputType && e.inputType.startsWith("delete"));
+        let val = this.value;
+        let numbers = val.replace(/[^0-9]/g, "");
+
+        // 010으로 시작하지 않으면 앞에 010을 자동으로 붙여줌
+        if (!numbers.startsWith("010")) {
+          numbers = "010" + numbers;
+        }
+
+        // 최대 11자리 (010 + 4자리 + 4자리)
+        numbers = numbers.slice(0, 11);
+
+        if (numbers.length <= 3) {
+          this.value = "010-";
+          return;
+        }
+
+        if (numbers.length < 7) {
+          // 010 뒤에 1~3자리 입력 중 (예: 010-1, 010-12, 010-123)
+          this.value = `010-${numbers.slice(3)}`;
+          return;
+        }
+
+        if (numbers.length === 7) {
+          // 010 뒤에 4자리 입력 완료 시점: 지우는 중이면 010-XXXX, 입력 중이면 자동으로 010-XXXX-
+          this.value = isDeleting ? `010-${numbers.slice(3, 7)}` : `010-${numbers.slice(3, 7)}-`;
+          return;
+        }
+
+        // 7자리 초과 (예: 010-1234-5 ~ 010-1234-5678)
+        this.value = `010-${numbers.slice(3, 7)}-${numbers.slice(7)}`;
+      });
+
+      // 포커스 시 커서를 맨 뒤(010- 다음)로 자동 이동
+      newPhoneInput.addEventListener("focus", function() {
+        if (!this.value || this.value.trim() === "") {
+          this.value = "010-";
+        }
+        if (this.value === "010-") {
+          setTimeout(() => {
+            this.setSelectionRange(4, 4);
+          }, 0);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

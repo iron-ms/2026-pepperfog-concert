@@ -1040,7 +1040,7 @@
 
             <div class="form-group">
               <label class="form-label">조회용 비밀번호 <span class="req">*</span> <span class="sub">(숫자 4자리)</span></label>
-              <input type="password" id="newPin" class="form-input" placeholder="예: 1234" maxlength="4" pattern="[0-9]{4}" required>
+              <input type="password" id="newPin" class="form-input" inputmode="numeric" placeholder="숫자 4자리" maxlength="4" pattern="[0-9]{4}" title="숫자 4자리를 입력해주세요." required>
             </div>
 
             <div class="form-group">
@@ -1107,12 +1107,12 @@
 
             <div class="form-group">
               <label class="form-label">휴대폰 번호 끝 4자리 <span class="req">*</span></label>
-              <input type="text" id="lookupPhoneLast4" class="form-input" placeholder="예: 5678" maxlength="4" pattern="[0-9]{4}" required>
+              <input type="text" id="lookupPhoneLast4" class="form-input" inputmode="numeric" placeholder="예: 5678" maxlength="4" pattern="[0-9]{4}" title="숫자 4자리를 입력해주세요." required>
             </div>
 
             <div class="form-group">
               <label class="form-label">비밀번호 <span class="req">*</span> <span class="sub">(숫자 4자리)</span></label>
-              <input type="password" id="lookupPin" class="form-input" placeholder="설정하신 4자리" maxlength="4" pattern="[0-9]{4}" required>
+              <input type="password" id="lookupPin" class="form-input" inputmode="numeric" placeholder="설정하신 숫자 4자리" maxlength="4" pattern="[0-9]{4}" title="숫자 4자리를 입력해주세요." required>
             </div>
 
             <button type="submit" class="submit-btn" id="lookupSubmitBtn">
@@ -1241,6 +1241,26 @@
     </div>
   </div>
 
+  <!-- [팝업 모달] 이미 등록된 신청 내역 안내 -->
+  <div id="duplicateModal" class="modal-overlay" onclick="closeDuplicateModalOnBg(event)">
+    <div class="modal-card">
+      <div class="modal-icon">⚠️</div>
+      <h3 class="modal-title">이미 등록된 신청 내역입니다</h3>
+      <p class="modal-summary" style="margin-bottom: 22px; line-height: 1.7; font-size: 14px;">
+        입력하신 이름과 연락처로 접수된 신청 내역이 이미 존재합니다.<br><br>
+        기존 신청 정보는 <strong style="color: var(--accent-cyan);">'신청내역 조회'</strong> 탭에서 확인해 주시기 바라며, 인원 변경 등 추가 문의는 관리자에게 연락해 주세요.
+      </p>
+      <div style="display: flex; gap: 10px;">
+        <button type="button" class="modal-close-btn" style="flex: 1; background: rgba(255, 255, 255, 0.15); box-shadow: none;" onclick="closeDuplicateModal()">
+          닫기
+        </button>
+        <button type="button" class="modal-close-btn" style="flex: 1.4;" onclick="goToLookupFromDuplicateModal()">
+          🔍 신청내역 조회하기
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     /**
      * 구글 스프레드시트 Web App URL
@@ -1310,6 +1330,33 @@
       if (e.target.id === 'successModal') {
         closeModal();
       }
+    }
+
+    // 중복 신청 안내 모달 제어
+    function openDuplicateModal() {
+      document.getElementById('duplicateModal').style.display = 'flex';
+    }
+
+    function closeDuplicateModal() {
+      document.getElementById('duplicateModal').style.display = 'none';
+    }
+
+    function closeDuplicateModalOnBg(e) {
+      if (e.target.id === 'duplicateModal') {
+        closeDuplicateModal();
+      }
+    }
+
+    function goToLookupFromDuplicateModal() {
+      closeDuplicateModal();
+      switchSubTab('lookup');
+      const name = document.getElementById("newName").value.trim();
+      const phone = document.getElementById("newPhone").value.trim();
+      const cleanPhone = phone.replace(/[^0-9]/g, '');
+      if (name) document.getElementById("lookupName").value = name;
+      if (cleanPhone.length >= 4) document.getElementById("lookupPhoneLast4").value = cleanPhone.slice(-4);
+      const lookupPinEl = document.getElementById("lookupPin");
+      if (lookupPinEl) lookupPinEl.focus();
     }
 
     // 1. 메인 탭 전환 함수 (about, setlist, location, apply)
@@ -1399,6 +1446,7 @@
           await new Promise(r => setTimeout(r, 500));
           const isDup = mockDB.some(item => item.name === name && item.phone.replace(/[^0-9]/g, '') === phoneClean);
           if (isDup) {
+            openDuplicateModal();
             showAlert("newAlert", `⚠️ ${duplicateMsg}`, false);
             btn.disabled = false;
             btn.textContent = "공연 신청 완료하기";
@@ -1423,6 +1471,9 @@
             // 계좌 안내 모달 팝업 띄우기
             openSuccessModal(name, parseInt(tickets));
           } else {
+            if (res.duplicate || (res.message && res.message.includes("이미 등록된"))) {
+              openDuplicateModal();
+            }
             showAlert("newAlert", `⚠️ ${res.message || duplicateMsg}`, false);
           }
         }
@@ -1653,6 +1704,16 @@
         }
       });
     }
+
+    // 7. 비밀번호 및 전화번호 뒷자리 숫자만 입력 제한
+    ['newPin', 'lookupPin', 'lookupPhoneLast4'].forEach(function(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', function() {
+          this.value = this.value.replace(/[^0-9]/g, '');
+        });
+      }
+    });
   </script>
 </body>
 </html>

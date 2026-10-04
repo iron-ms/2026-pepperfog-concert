@@ -1346,7 +1346,7 @@
     function showAlert(elementId, message, isSuccess) {
       const el = document.getElementById(elementId);
       if (!el) return;
-      el.textContent = message;
+      el.innerHTML = message;
       el.className = `alert-box ${isSuccess ? 'alert-success' : 'alert-error'}`;
       el.style.display = 'block';
     }
@@ -1382,6 +1382,8 @@
       }
       const phoneLast4 = phoneClean.slice(-4);
 
+      const duplicateMsg = "이미 등록된 신청 내역이 있습니다. 신청 정보는 '신청내역 조회' 탭에서 확인해 주시고, 인원 변경 등은 관리자에게 문의해 주세요.";
+
       const payload = {
         action: "create",
         name,
@@ -1395,6 +1397,13 @@
       try {
         if (!GAS_URL.trim()) {
           await new Promise(r => setTimeout(r, 500));
+          const isDup = mockDB.some(item => item.name === name && item.phone.replace(/[^0-9]/g, '') === phoneClean);
+          if (isDup) {
+            showAlert("newAlert", `⚠️ ${duplicateMsg}`, false);
+            btn.disabled = false;
+            btn.textContent = "공연 신청 완료하기";
+            return;
+          }
           mockDB.push({ ...payload, status: "신규", depositStatus: "입금 대기" });
           document.getElementById("newApplyForm").reset();
           document.getElementById("newPhone").value = "010-";
@@ -1414,7 +1423,7 @@
             // 계좌 안내 모달 팝업 띄우기
             openSuccessModal(name, parseInt(tickets));
           } else {
-            showAlert("newAlert", res.message || "신청에 실패했습니다.", false);
+            showAlert("newAlert", `⚠️ ${res.message || duplicateMsg}`, false);
           }
         }
       } catch (err) {
